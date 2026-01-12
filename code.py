@@ -1,5 +1,5 @@
 import pandas as pd
-import plotly.express as px
+
 import numpy as np
 import streamlit as st
 from datetime import datetime, timedelta
@@ -107,13 +107,6 @@ if st.button("?? Predict Bike Rentals"):
             "Bike Rentals": y
         })
 
-        fig = px.line(
-            df,
-            x="Time",
-            y="Bike Rentals",
-            markers=True,
-            title="Bike Rental Prediction (Next 6 Hours)"
-        )
         st.plotly_chart(fig, use_container_width=True)
 
     # ---------------- DAILY GRAPH ----------------
@@ -126,12 +119,7 @@ if st.button("?? Predict Bike Rentals"):
             "Bike Rentals": y
         })
 
-        fig = px.bar(
-            df,
-            x="Date",
-            y="Bike Rentals",
-            title="Bike Rental Prediction (Next 6 Days)"
-        )
+       
         st.plotly_chart(fig, use_container_width=True)
 
     # ---------------- FEATURE IMPACT (UNCHANGED) ----------------
@@ -140,11 +128,5 @@ if st.button("?? Predict Bike Rentals"):
         "Impact": [abs(v) if isinstance(v, (int, float)) else 5 for v in inputs.values()]
     }).sort_values("Impact", ascending=False)
 
-    fig2 = px.bar(
-        impact_df,
-        x="Feature",
-        y="Impact",
-        color="Impact",
-        title="Most Affected Features"
-    )
+  
     st.plotly_chart(fig2, use_container_width=True)
